@@ -12,25 +12,33 @@ public class SingleLinkedListDemo {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 
 
-//        singleLinkedList.add(hero1);
-//        singleLinkedList.add(hero2);
-//        singleLinkedList.add(hero3);
-//        singleLinkedList.add(hero4);
-
-        //按编号顺序添加节点
-        singleLinkedList.addOrderByNo(hero4);
-        singleLinkedList.addOrderByNo(hero3);
-        singleLinkedList.addOrderByNo(hero1);
-        singleLinkedList.addOrderByNo(hero2);
-      //  singleLinkedList.addOrderByNo(hero2);
+        singleLinkedList.add(hero1);
+        singleLinkedList.add(hero2);
+        singleLinkedList.add(hero3);
+        singleLinkedList.add(hero4);
 
         singleLinkedList.list();
-
-        singleLinkedList.delete(hero3);
 
         System.out.println();
 
+        singleLinkedList.revertLinked(singleLinkedList.getHead());
+
         singleLinkedList.list();
+
+        //按编号顺序添加节点
+//        singleLinkedList.addOrderByNo(hero4);
+//        singleLinkedList.addOrderByNo(hero3);
+//        singleLinkedList.addOrderByNo(hero1);
+//        singleLinkedList.addOrderByNo(hero2);
+      //  singleLinkedList.addOrderByNo(hero2);
+
+//        singleLinkedList.list();
+//
+//        singleLinkedList.delete(hero3);
+//
+//        System.out.println();
+//
+//        singleLinkedList.list();
 
     }
 
@@ -42,6 +50,8 @@ public class SingleLinkedListDemo {
  class SingleLinkedList{
 
     private HeroNode head =  new HeroNode(0,"","");
+
+
 
 
 
@@ -117,9 +127,6 @@ public class SingleLinkedListDemo {
      }
 
 
-
-
-
      public void list(){
 
         //为空
@@ -140,7 +147,39 @@ public class SingleLinkedListDemo {
     }
 
 
-}
+    //单链表反转
+    public void revertLinked(HeroNode head){
+
+         HeroNode cur = head.next;
+         HeroNode next = null;
+         HeroNode revertHeroNode = new HeroNode(0, "", "");
+
+         while (cur!=null){
+             //提前寻址到下一个节点
+             next = cur.next;
+             //将 revertHeroNode的下一个节点指向 赋值给 当前cur节点的下一个指向
+             cur.next = revertHeroNode.next;
+             //将 revertHeroNode 指向 cur节点
+             revertHeroNode.next = cur;
+
+             //节点后移
+             cur = next;
+         }
+
+         //将 revertHeroNode的指向赋值给 head 节点的指向
+         head.next = revertHeroNode.next;
+
+    }
+
+
+     public HeroNode getHead() {
+         return head;
+     }
+
+     public void setHead(HeroNode head) {
+         this.head = head;
+     }
+ }
 
 
 
