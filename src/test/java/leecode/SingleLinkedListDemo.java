@@ -1,5 +1,7 @@
 package leecode;
 
+import java.util.Stack;
+
 public class SingleLinkedListDemo {
 
     public static void main(String[] args) {
@@ -11,19 +13,39 @@ public class SingleLinkedListDemo {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 
-
         singleLinkedList.add(hero1);
         singleLinkedList.add(hero2);
         singleLinkedList.add(hero3);
         singleLinkedList.add(hero4);
 
+
+        HeroNode hero7 =  new HeroNode(7,"777","77777");
+        HeroNode hero6 =  new HeroNode(6,"666","66666");
+        HeroNode hero9 =  new HeroNode(9,"999","99999");
+        HeroNode hero8 =  new HeroNode(8,"888","88888");
+
+        SingleLinkedList singleLinkedList1 = new SingleLinkedList();
+
+        singleLinkedList1.add(hero7);
+        singleLinkedList1.add(hero6);
+        singleLinkedList1.add(hero9);
+        singleLinkedList1.add(hero8);
+
         singleLinkedList.list();
 
+        singleLinkedList1.list();
+        System.out.println();
         System.out.println();
 
-        singleLinkedList.revertLinked(singleLinkedList.getHead());
+        //逆向打印链表
+        //singleLinkedList.revertPrintLinked(singleLinkedList.getHead());
 
-        singleLinkedList.list();
+
+
+          //反转链表
+//        singleLinkedList.revertLinked(singleLinkedList.getHead());
+//
+//        singleLinkedList.list();
 
         //按编号顺序添加节点
 //        singleLinkedList.addOrderByNo(hero4);
@@ -172,6 +194,31 @@ public class SingleLinkedListDemo {
     }
 
 
+     //单链表 逆向打印
+     public void revertPrintLinked(HeroNode head){
+
+         Stack<HeroNode> heroNodes = new Stack<>();
+
+         HeroNode temp = head.next;
+
+         while (temp!=null){
+
+             heroNodes.push(temp);
+
+             temp = temp.next;
+         }
+
+         while (heroNodes.size()>0){
+
+             System.out.println(heroNodes.pop());
+
+
+         }
+
+
+     }
+
+
      public HeroNode getHead() {
          return head;
      }
@@ -180,6 +227,10 @@ public class SingleLinkedListDemo {
          this.head = head;
      }
  }
+
+
+
+
 
 
 
